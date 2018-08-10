@@ -30,23 +30,26 @@ func approxLogGamma(x float64) float64 {
 	return logGammaLanczosApprox(x)
 }
 
-// Coefficients of the polynomial q used in the Lanczos Approximation
-var qPolynomial = [7]float64{75122.6331530, 80916.6278952, 36308.2951477,
-	8687.24529705, 1168.92649479, 83.8676043424, 2.50662827511}
-
 // Computes the natural logarithm of the absolute value of
 // the gamma function of x using the Lanczos approximation.
-// See http://www.rskey.org/gamma.htm
 //
 // The formula used is
 //
 //   \log\Gamma(x) = \log\left( \sum_{n=0}^{N} q_n x^n \right)
 //                   + (x+0.5) \log(x+5.5) - (x+5.5) - \sum_{n=0}^{N} \log(x+n)
 //
-// The coefficients of q are stored in qPolynomial.
+// Note that q0 = 75122.6331530, q1 = 80916.6278952, q2 = 36308.2951477,
+// q3 = 8687.24529705, q4 = 1168.92649479, q5 = 83.8676043424, q6 = 2.50662827511.
+// According to [1], we only need coefficients through q6 to get an approximation of the Gamma
+// function with an error of less than 2e-10 for any positive real number.
+//
+// [1] http://www.rskey.org/gamma.htm
 func logGammaLanczosApprox(x float64) float64 {
 	a := (x+0.5)*math.Log(x+5.5) - math.Log(x+5.5)
 	b := float64(0.0)
+	// Coefficients of the polynomial q used in the Lanczos Approximation
+	var qPolynomial = [7]float64{75122.6331530, 80916.6278952, 36308.2951477,
+		8687.24529705, 1168.92649479, 83.8676043424, 2.50662827511}
 
 	for i := 0; i < 7; i++ {
 		a -= math.Log(x + float64(i))
