@@ -46,3 +46,20 @@ func equalWithinError(a, b float64) bool {
 func dist(x1, x2, y1, y2 float64) float64 {
 	return math.Hypot(x2-x1, y2-y1)
 }
+
+// Compute absolute value angle difference
+func absAngleDiff(a, b float64) float64 {
+	return math.Abs(signedAngleDiff(a, b))
+}
+
+// Compute signed angle difference
+func signedAngleDiff(a, b float64) float64 {
+	diff := a - b
+	for diff <= -math.Pi {
+		diff += 2 * math.Pi
+	}
+	for diff > math.Pi {
+		diff -= 2 * math.Pi
+	}
+	return diff
+}
