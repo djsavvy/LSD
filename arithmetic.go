@@ -30,11 +30,11 @@ func equalWithinError(a, b float64) bool {
 	// Difference between 1.0 and the minimum float64 greater than 1
 	const epsilonFloat64 = 2.22044604925031308084726333618164062e-16
 
-	// minNormalizedFloat64 is the smallest normalized number, thus, the smallest
-	// number whose relative error is bounded by epsilonFloat64. For
-	// smaller numbers, the same quantization steps as for minNormalizedFloat64
+	// 'minNormalizedFloat64' is the smallest normalized number, thus, the smallest
+	// number whose relative error is bounded by 'epsilonFloat64'. For
+	// smaller numbers, the same quantization steps as for 'minNormalizedFloat64'
 	// are used. Then, for smaller numbers, a meaningful "relative"
-	// error should be computed by dividing the difference by minNormalizedFloat64.
+	// error should be computed by dividing the difference by 'minNormalizedFloat64'.
 	if maxAbs < minNormalizedFloat64 {
 		maxAbs = minNormalizedFloat64
 	}

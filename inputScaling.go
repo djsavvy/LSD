@@ -8,7 +8,7 @@ import (
 // Computes a Gaussian kernel, with length 'len' and standard deviation 'sigma', that is
 // centered at 'mean'.
 //
-// For example, if mean=0.5, the Gaussian will be centered in the middle point between the
+// For example, if 'mean' equals 0.5, the Gaussian will be centered in the middle point between the
 // values in the 0th and 1st indices of the output slice.
 func gaussianKernel(len int, sigma, mean float64) []float64 {
 	if len < 0 {

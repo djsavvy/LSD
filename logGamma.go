@@ -9,7 +9,7 @@ import (
 var UseApproxLogGamma = false
 
 // Computes the natural logarithm of the absolute value of the Gamma function.
-// If useApproxLogGamma is set to true, calls approxLogGamma(x). Otherwise,
+// If 'UseApproxLogGamma' is set to true, calls 'approxLogGamma(x)'. Otherwise,
 // calls the Go standard library's builtin method.
 func logGamma(x float64) float64 {
 	if UseApproxLogGamma {
@@ -40,6 +40,7 @@ func approxLogGamma(x float64) float64 {
 //
 // Note that q0 = 75122.6331530, q1 = 80916.6278952, q2 = 36308.2951477,
 // q3 = 8687.24529705, q4 = 1168.92649479, q5 = 83.8676043424, q6 = 2.50662827511.
+//
 // According to [1], we only need coefficients through q6 to get an approximation of the Gamma
 // function with an error of less than 2e-10 for any positive real number.
 //
