@@ -9,3 +9,6 @@ type rect struct {
 	anglePrecision   float64 // Tolerance angle
 	pAligned         float64 // Probability of a point with angle within 'anglePrecision'
 }
+
+/* Since rect is made of primitive types, we do not need to define a method corresponding to rect_copy.
+The assignment operator will suffice. */
