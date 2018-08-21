@@ -1,7 +1,9 @@
 package lsd
 
+// TODO: reduce code reuse between rect and LineSegment types
+
 type rect struct {
-	x1, y1, x2, y2   float64 // Endpoints of the line segment
+	p1, p2           Point // Endpoints of the corresponding line segment
 	width            float64
 	centerX, centerY float64 // Center of the rectangle
 	theta            float64 // Angle

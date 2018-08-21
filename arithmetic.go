@@ -42,11 +42,6 @@ func equalWithinError(a, b float64) bool {
 	return (diffAbs / maxAbs) <= (relativeErrorFactor * epsilonFloat64)
 }
 
-// Computes Euclidean distance between points (x1, y1) and (x2, y2)
-func dist(x1, x2, y1, y2 float64) float64 {
-	return math.Hypot(x2-x1, y2-y1)
-}
-
 // Compute absolute value angle difference
 func absAngleDiff(a, b float64) float64 {
 	return math.Abs(signedAngleDiff(a, b))
