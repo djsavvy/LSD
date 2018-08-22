@@ -1,9 +1,25 @@
 package lsd
 
 import (
+	"image"
 	"log"
 	"math"
 )
+
+// Converts an input image.Image to an *image.Gray of the same dimensions. This is necessary
+// since the LSD algorithm requires a grayscaled input.
+func makeGrayscale(img image.Image) *image.Gray {
+	result := image.NewGray(img.Bounds())
+	// According to the image package documentation:
+	// "Looping over Y first and X second is more likely to result in better
+	// memory access patterns than X first and Y second."
+	for y := img.Bounds().Min.Y; y < img.Bounds().Max.Y; y++ {
+		for x := img.Bounds().Min.X; x < img.Bounds().Max.X; x++ {
+			result.Set(x, y, img.At(x, y))
+		}
+	}
+	return result
+}
 
 // Computes a Gaussian kernel, with length 'len' and standard deviation 'sigma', that is
 // centered at 'mean'.
